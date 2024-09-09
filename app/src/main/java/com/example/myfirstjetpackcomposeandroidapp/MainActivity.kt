@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -52,53 +54,86 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         var lightIsOn by remember { mutableStateOf(false) }
+                        var textOfLightButton by remember { mutableStateOf("Bat den") }
                         Button(
-                            onClick = { lightIsOn = !lightIsOn },
+                            onClick = {
+                                lightIsOn = !lightIsOn
+                                textOfLightButton = if (lightIsOn) "Tat den" else "Bat den"
+                                      },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = if (lightIsOn) Color.Green else Color.Gray
                             ),
                             modifier = Modifier
                                 .fillMaxSize()
-                                .weight(1f)
+                                .weight(1f),
+                            shape = RoundedCornerShape(30.dp)
                         ) {
                             Text(
-                                text = "Light",
+                                text = "${textOfLightButton}",
                                 color = Color.White,
                                 fontSize = 30.sp
                             )
                         }
-                        var fanIsOn by remember {
-                            mutableStateOf(false)
-                        }
+                        var fanIsOn by remember { mutableStateOf(false) }
+                        var textOfFanButton by remember { mutableStateOf("Bat quat") }
                         Button(
-                            onClick = { fanIsOn = !fanIsOn },
+                            onClick = {
+                                fanIsOn = !fanIsOn
+                                textOfFanButton = if (fanIsOn) "Tat quat" else "Bat quat"
+                                      },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = if (fanIsOn) Color.Green else Color.Gray
                             ),
                             modifier = Modifier
                                 .fillMaxSize()
-                                .weight(1f)
+                                .weight(1f),
+                            shape = RoundedCornerShape(30.dp)
                         ) {
                             Text(
-                                text = "Fan",
+                                text = "${textOfFanButton}",
                                 color = Color.White,
                                 fontSize = 30.sp
                             )
                         }
-                        var doorIsOpen by remember {
-                            mutableStateOf(false)
-                        }
+                        var doorIsOpen by remember { mutableStateOf(false) }
+                        var textOfDoorButton by remember { mutableStateOf("Mo cua") }
                         Button(
-                            onClick = { doorIsOpen = !doorIsOpen },
+                            onClick = {
+                                doorIsOpen = !doorIsOpen
+                                textOfDoorButton = if (doorIsOpen) "Dong cua" else "Mo cua"
+                                      },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = if (doorIsOpen) Color.Green else Color.Gray
                             ),
                             modifier = Modifier
                                 .fillMaxSize()
-                                .weight(1f)
+                                .weight(1f),
+                            shape = RoundedCornerShape(30.dp)
                         ) {
                             Text(
-                                text = "Door",
+                                text = "${textOfDoorButton}",
+                                color = Color.White,
+                                fontSize = 30.sp
+                            )
+                        }
+                        var micIsOn by remember { mutableStateOf(false) }
+
+                        var textOfMicButton by remember { mutableStateOf("Mic") }
+                        Button(
+                            onClick = {
+                                micIsOn = !micIsOn
+                                textOfMicButton = if (micIsOn) "Noi Gi Di" else "Mic"
+                                      },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(90.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (micIsOn) Color.Green else Color.Gray
+                            ),
+                            shape = RoundedCornerShape(30.dp)
+                        ) {
+                            Text(
+                                text = "${textOfMicButton}",
                                 color = Color.White,
                                 fontSize = 30.sp
                             )
