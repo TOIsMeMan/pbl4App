@@ -1,6 +1,7 @@
 package com.example.myfirstjetpackcomposeandroidapp
 
 import android.os.Bundle
+import android.text.Layout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -33,6 +34,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
@@ -117,7 +119,6 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         var micIsOn by remember { mutableStateOf(false) }
-
                         var textOfMicButton by remember { mutableStateOf("Mic") }
                         Button(
                             onClick = {
@@ -125,8 +126,9 @@ class MainActivity : ComponentActivity() {
                                 textOfMicButton = if (micIsOn) "Noi Gi Di" else "Mic"
                                       },
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .height(90.dp),
+                                .width(90.dp)
+                                .height(90.dp)
+                                .align(Alignment.End),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = if (micIsOn) Color.Green else Color.Gray
                             ),
@@ -135,7 +137,8 @@ class MainActivity : ComponentActivity() {
                             Text(
                                 text = "${textOfMicButton}",
                                 color = Color.White,
-                                fontSize = 30.sp
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center
                             )
                         }
                     }
