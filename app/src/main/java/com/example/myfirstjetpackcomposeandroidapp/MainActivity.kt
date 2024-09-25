@@ -72,30 +72,41 @@ class MainActivity : ComponentActivity() {
                         ) {
                             var lightIsOn by remember { mutableStateOf(false) }
                             var textOfLightButton by remember { mutableStateOf("Bật đèn") }
-                            Button(
-                                onClick = {
-                                    lightIsOn = !lightIsOn
-                                    textOfLightButton = if (lightIsOn) "Tắt đèn" else "Bật đèn"
-                                    if (lightIsOn) {
-                                        sendRequest("/light/on")
-                                    } else {
-                                        sendRequest("/light/off")
-                                    }
-                                },
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = if (lightIsOn) Color(red = 43, green = 140, blue = 68) else Color(red = 143, green = 193, blue = 181)
-                                ),
+                            Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .weight(1f),
-                                shape = RoundedCornerShape(30.dp)
+                                    .weight(1f)
+                                    .background(
+                                        if (lightIsOn) Color(red = 255, green = 255, blue = 200)
+                                        else Color(red = 200, green = 200, blue = 255)
+                                    )
                             ) {
-                                Text(
-                                    text = "${textOfLightButton}",
-                                    color = Color.White,
-                                    fontSize = 30.sp
-                                )
+                                Button(
+                                    onClick = {
+                                        lightIsOn = !lightIsOn
+                                        textOfLightButton = if (lightIsOn) "Tắt đèn" else "Bật đèn"
+                                        if (lightIsOn) {
+                                            sendRequest("/light/on")
+                                        } else {
+                                            sendRequest("/light/off")
+                                        }
+                                    },
+                                    colors = ButtonDefaults.buttonColors(
+//                                        containerColor = if (lightIsOn) Color(red = 43, green = 140, blue = 68) else Color(red = 143, green = 193, blue = 181)
+                                        containerColor = Color.Transparent
+                                    ),
+                                    modifier = Modifier
+                                        .fillMaxSize(),
+                                    shape = RoundedCornerShape(30.dp)
+                                ) {
+                                    Text(
+                                        text = "${textOfLightButton}",
+                                        color = Color.White,
+                                        fontSize = 30.sp
+                                    )
+                                }
                             }
+
                             var fanIsOn by remember { mutableStateOf(false) }
                             var textOfFanButton by remember { mutableStateOf("Bật quạt") }
                             Button(
@@ -113,7 +124,15 @@ class MainActivity : ComponentActivity() {
                                 ),
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .weight(1f),
+                                    .weight(1f)
+                                    .background(
+                                        brush = Brush.verticalGradient(
+                                            colors = listOf(
+                                                Color(red = 43, green = 140, blue = 68),
+                                                Color(red = 0, green = 92, blue = 83)
+                                            )
+                                        )
+                                    ),
                                 shape = RoundedCornerShape(30.dp)
                             ) {
                                 Text(
